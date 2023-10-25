@@ -3,11 +3,36 @@
 // special icons font to implement xd design icons instate of SVG images
 @import "https://file.myfontastic.com/XAmgNSpKArdWZeMz4iYHpd/icons.css";
 
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+:root {
+    --primary-color: #2c77fc;
+    --lightGray: #f3f5f7;
+    --gray: #63799b;
+    --primaryFont: "Nunito", sans-serif;
+}
+
+body {
+    font-family: var(--primaryFont);
+}
+
+.color-gray {
+    color: var(--gray);
+}
+
+.color-light-gray {
+    color: var(--lightGray);
+}
 .form-control {
     border-radius: 100px;
     padding: 10px 20px;
     &::placeholder {
         opacity: 0.6;
+    }
+
+    &:focus {
+        border-color: var(--primary-color);
+        box-shadow: unset !important;
     }
 }
 
@@ -51,9 +76,9 @@
 
 .card.custom-card {
     padding: 20px;
-    border-color: #f3f3f3;
+    border-color: var(--lightGray);
     border-radius: 0;
-    box-shadow: 0px 2px 4px #00000029 ;
+    box-shadow: 0px 2px 4px #00000029;
 }
 
 // Login css
@@ -91,23 +116,25 @@
 }
 
 // top nav css
-
-.top-nav{
-    padding: 20px;
+.top-nav {
+    padding: 10px;
     background: #fff;
-    margin-bottom: 15px;
-    .logo-container{
-        .logo{
+    margin-bottom: 30px;
+    .logo-container {
+        .logo {
             width: 200px;
         }
     }
 }
 
+.admin-layout{
+    background: var(--lightGray);
+    min-height: 100vh;
+}
 // dashboard page
 
-.dashboard-page{
-    background: #F3F5F7;
-    min-height: 100vh;
+.chart-wrapper {
+    position: relative;
 }
 
 // Dashboard css
@@ -115,41 +142,41 @@
 ////////// Media START ///////////
 
 // laptop
-@media all and (max-width: 1024px) { 
-    .login-page{
-        .background-container{
+@media all and (max-width: 1024px) {
+    .login-page {
+        .background-container {
             width: 60%;
             .text-wrapper {
                 width: 450px;
             }
         }
-        .form-container{
+        .form-container {
             width: 40%;
         }
     }
-} 
+}
 
 // tablet
 @media all and (max-width: 770px) {
     .login-page {
         flex-direction: column;
-        
+
         .background-container,
-        .form-container{
-            width : 100%
+        .form-container {
+            width: 100%;
         }
 
-        .background-container{
+        .background-container {
             padding: 20px;
             height: 30vh;
             display: flex;
             justify-content: center;
             align-items: center;
 
-            .text-wrapper{
+            .text-wrapper {
                 margin: 0px;
                 text-align: center;
-                .paragraph-wrapper{
+                .paragraph-wrapper {
                     width: 100% !important;
                 }
             }
@@ -158,12 +185,14 @@
             height: 70vh;
         }
     }
-} 
+}
 
 // large Mobile
-@media all and (max-width: 485px) {}
+@media all and (max-width: 485px) {
+}
 
 // small Mobile
-@media all and (max-width: 325px) {} 
+@media all and (max-width: 325px) {
+}
 
 ////////// Media END ///////////

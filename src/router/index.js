@@ -9,7 +9,8 @@ const routes = [
     }
   },
   {
-    path: "/:catchAll(.*)", redirect: to => {
+    path: "/:catchAll(.*)",
+    redirect: to => {
       return { path: '/login' }
     }
   },

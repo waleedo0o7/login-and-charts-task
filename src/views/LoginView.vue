@@ -80,7 +80,7 @@ export default {
           username: email,
           password: password,
         })
-        .then((res) => { 
+        .then((res) => {  
           localStorage.setItem("token", res.data.token);
           router.push("/dashboard");
         })

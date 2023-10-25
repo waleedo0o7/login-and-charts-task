@@ -1,38 +1,57 @@
 <template>
-  <div class="dashboard-page">
+  <AdminLayout>
+    <div class="dashboard-page">
+      <div class="container">
+        <div class="page-header-wrapper mb-4">
+          <h4 class="color-gray">Analytics Report</h4>
+        </div>
+        <!-- page-header -->
 
-    <div class="top-nav">
-
-      <div class="container-fluid d-flex justify-content-between align-items-center">
-        
-        <div class="logo-container"> 
-
-          <router-link to="/dashboard"> <img src="../assets/images/logo.png" class="logo img-fluid" alt=""> </router-link>
-
-        </div><!-- logo-container -->
-
-        <div class="menu-container">
-          <a @click="logout()" class="btn btn-primary"> Logout </a>
-        </div><!-- menu-container -->
-
-      </div><!-- container-fluid -->
-    </div><!-- top-nav -->
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-
-          <div class="card custom-card">
-            <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card custom-card mb-4 mb-md-0">
+              <p class="color-gray mb-3">Cases per PS</p>
+              <Bar
+                id="my-chart-id"
+                :options="barChartOptions"
+                :data="perPsChartData"
+              />
+            </div>
           </div>
+          <!-- col-md-4 -->
+
+          <div class="col-md-4">
+            <div class="card custom-card mb-4 mb-md-0">
+              <p class="color-gray mb-3"> Cases Per Prescriber </p>
+              <Bar
+                id="my-chart-id"
+                :options="barChartOptions"
+                :data="perPrescriberChartData"
+              />
+            </div>
+          </div>
+          <!-- col-md-4 -->
+
+          <div class="col-md-4">
+            <div class="card custom-card mb-4 mb-md-0">
+              <p class="color-gray mb-3"> Cases Per Payer </p>
+              <Bar
+                id="my-chart-id"
+                :options="barChartOptions"
+                :data="perPayerChartData"
+              />
+            </div>
+          </div>
+          <!-- col-md-4 -->
         </div>
       </div>
-    </div> <!-- container -->
-  </div>
+      <!-- container -->
+    </div>
+  </AdminLayout>
 </template>
 
 <script>
+
 import axios from "axios";
 
 import service from "@/shared/service";
@@ -50,6 +69,7 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
+import AdminLayout from "@/components/layouts/AdminLayout.vue";
 
 ChartJS.register(
   Title,
@@ -63,26 +83,50 @@ ChartJS.register(
 export default {
   name: "DashboardView",
 
-  components: { Bar },
+  components: { Bar, AdminLayout },
 
   setup() {
     const router = useRouter();
 
     const chartResponse = "";
 
-    const chartData = {
+    const perPsChartData = {
       labels: ["ps1", "ps2", "ps3", "ps4", "ps5"],
       datasets: [
         {
-          label: "Data One 000 ",
           backgroundColor: "#4981FD",
-          borderRadius: 5, // Set the border radius for the bars
+          borderRadius: 5,
           color: "f0f",
           data: [50, 150, 210, 240, 170],
         },
       ],
     };
-    const chartOptions = {
+
+    const perPrescriberChartData = {
+      labels: ["ps1", "ps2", "ps3", "ps4", "ps5"],
+      datasets: [
+        {
+          backgroundColor: "#935CCB",
+          borderRadius: 5,
+          color: "f0f",
+          data: [50, 150, 210, 240, 170],
+        },
+      ],
+    };
+
+    const perPayerChartData = {
+      labels: ["ps1", "ps2", "ps3", "ps4", "ps5"],
+      datasets: [
+        {
+          backgroundColor: "#26BBE3",
+          borderRadius: 5,
+          color: "f0f",
+          data: [50, 150, 210, 240, 170],
+        },
+      ],
+    };
+
+    const barChartOptions = {
       plugins: {
         legend: {
           display: false,
@@ -92,7 +136,7 @@ export default {
       scales: {
         x: {
           grid: {
-            display: false ,
+            display: false,
           },
           ticks: {
             color: "#555", // Change the color of the x-axis tick labels
@@ -107,16 +151,11 @@ export default {
             stepSize: 100,
             color: "#555",
             callback: (value) => {
-              return value + ' K';
-              },
+              return value + " K";
+            },
           },
         },
       },
-    };
-
-    const logout = () => {
-      localStorage.removeItem("token");
-      router.push("/");
     };
 
     const getChartsData = () => {
@@ -141,12 +180,13 @@ export default {
     };
 
     return {
-      chartData,
-      chartOptions,
+      perPsChartData,
+      perPrescriberChartData,
+      perPayerChartData,
+      barChartOptions,
 
       service,
-      chartResponse,
-      logout,
+      chartResponse, 
       getChartsData,
     };
   },

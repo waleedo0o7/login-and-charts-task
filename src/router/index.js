@@ -16,12 +16,12 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'welcome to app | Login',
     component: LoginView
   },
   {
     path: '/dashboard',
-    name: 'dashboard',
+    name: 'Dashboard | Reports',
     component: () => import('../views/DashboardView.vue')
   }
 ]
@@ -30,5 +30,12 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
+router.beforeEach((to, from, next) => {
+  document.title = to.name;
+  next();
+});
+
 
 export default router

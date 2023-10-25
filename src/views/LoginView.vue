@@ -68,8 +68,8 @@ export default {
     const router = useRouter();
  
     const loginForm = {
-      email: "kminchelle",
-      password: "0lelplR",
+      email: "",
+      password: "",
     };
 
     const login = (email, password ) => {

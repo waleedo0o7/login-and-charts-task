@@ -23,7 +23,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/css/style.scss'
 
 
-
 createApp(App)
     .use(store)
     .use(router).mount('#app')

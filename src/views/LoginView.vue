@@ -55,8 +55,6 @@
 <script>
 import axios from "axios";
 
-import service from "@/shared/service";
-
 import { useRouter } from "vue-router";
 
 import Vue3Toastify, { toast } from "vue3-toastify";
@@ -97,8 +95,7 @@ export default {
 
     return { 
       login,
-      loginForm,
-      service,
+      loginForm
     };
   },
 

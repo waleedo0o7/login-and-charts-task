@@ -27,22 +27,23 @@
 
 
 import { useRouter } from "vue-router";
+ 
 
 export default {
   
   name: "AdminLayout",
-
   
   setup() {
 
     const router = useRouter();
+
     const logout = () => {
       localStorage.removeItem("token");
       router.push("/");
     };
 
     return { 
-      logout, 
+      logout
     };
 
   },
